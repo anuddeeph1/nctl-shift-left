@@ -41,7 +41,7 @@ jobs:
           
       - name: Run Remediation
         run : |
-          nctl remediate -r config-files/k8s resources -p https://github.com/nirmata/kyverno-policies/blob/main/baseline/disallow-host-namespaces/disallow-host-namespaces.yaml
+          https://github.com/nirmata/kyverno-policies/blob/main/pod-security/baseline/disallow-host-namespaces/disallow-host-namespaces.yaml
           echo "Mutation completed"
       #- name: NCTL Scan - Kubernetes Detailed Report
       #  run: nctl scan kubernetes --policies controls/pod-security --resources config-files/k8s --details 
