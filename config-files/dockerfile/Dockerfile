@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 WORKDIR /app
 
-ADD . /app/
+COPY . /app/
 
 RUN apt-get update && apt-get install -y nano
 
