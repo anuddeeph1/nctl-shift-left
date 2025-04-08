@@ -24,7 +24,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: nctl-scan-installer
-        uses: nirmata/action-install-nctl-scan@v0.0.4
+        uses: supplypike/setup-bin@v4
+        with:
+          uri: 'https://nirmata-downloads.s3.us-east-2.amazonaws.com/nctl/nctl_4.3.5/nctl_4.3.5_linux_386.zip'
+          name: 'nctl'
+          version: '4.3.5'
 
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
 
@@ -36,7 +40,7 @@ jobs:
       
       - name: Run mutate policy 
         run: |
-          nctl remediate -r config-files/k8s -p controls/pod-security -m controls/pod-security/disallow-host-namespaces.yaml
+          nctl remediate -r config-files/k8s -p controls/pod-security -m controls/pod-security/remediate/remediate-disallow-host-namespaces.yaml
           echo "Mutation completed"
           
       - name: Run Remediation
