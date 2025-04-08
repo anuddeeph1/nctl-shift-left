@@ -6,7 +6,7 @@ on:
   #     - "main"
   push:
     branches:
-      - "main"
+      - "demo"
 
 jobs:
   NCTL-Scan-Dockerfile:
