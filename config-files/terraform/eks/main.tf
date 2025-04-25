@@ -6,7 +6,7 @@ module "eks" {
   iam_role_arn  = "arn:aws:iam::844333597536:role/eksClusterRole-anudeep"
 
   # Optional: Public access to the cluster
-  cluster_endpoint_public_access = true
+  cluster_endpoint_public_access = false
   enable_cluster_creator_admin_permissions = true
   create_iam_role = false
   #create_node_iam_role = false
