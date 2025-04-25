@@ -352,13 +352,13 @@
                   "delete": null,
                   "update": null
                 },
-                "version": "1.33",
+                "version": "1.31",
                 "vpc_config": [
                   {
                     "endpoint_private_access": true,
-                    "endpoint_public_access": true,
+                    "endpoint_public_access": false,
                     "public_access_cidrs": [
-                      "0.0.0.0/0"
+                      "10.0.0.0/16"
                     ],
                     "subnet_ids": [
                       "subnet-04309b222eb8fd488",
@@ -2941,7 +2941,7 @@
               "endpoint_private_access": true,
               "endpoint_public_access": false,
               "public_access_cidrs": [
-                "0.0.0.0/0"
+                "10.0.0.0/16"
               ],
               "subnet_ids": [
                 "subnet-04309b222eb8fd488",
@@ -6792,6 +6792,11 @@
             },
             "cluster_endpoint_public_access": {
               "constant_value": false
+            },
+            "cluster_endpoint_public_access_cidrs": {
+              "constant_value": [
+                "10.0.0.0/16"
+              ]
             },
             "cluster_name": {
               "references": [
@@ -15685,71 +15690,169 @@
   },
   "relevant_attributes": [
     {
-      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_iam_role.this[0]",
+      "attribute": [
+        "unique_id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.data.aws_subnets.placement_group[0]",
+      "attribute": [
+        "ids"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_replica_key.this[0]",
       "attribute": [
         "arn"
       ]
     },
     {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "resource": "module.eks.module.eks_managed_node_group.data.aws_ssm_parameter.ami[0]",
+      "attribute": [
+        "value"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_access_entry.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.module.kms.data.aws_iam_policy_document.this[0]",
+      "attribute": [
+        "json"
+      ]
+    },
+    {
+      "resource": "module.eks.time_sleep.this[0]",
+      "attribute": [
+        "triggers",
+        "cluster_service_cidr"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_replica_key.this[0]",
+      "attribute": [
+        "policy"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_grant.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "kubernetes_network_config",
+        0,
+        "service_ipv4_cidr"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_external_key.this[0]",
       "attribute": [
         "arn"
       ]
     },
     {
-      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
+      "resource": "module.eks.module.self_managed_node_group.aws_iam_role.this[0]",
       "attribute": [
-        "image_id"
+        "unique_id"
       ]
     },
     {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "max_size"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].module.user_data.data.cloudinit_config.al2023_eks_managed_node_group[0]",
-      "attribute": [
-        "rendered"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_iam_openid_connect_provider.oidc_provider[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
+      "resource": "module.eks.aws_cloudwatch_log_group.this[0]",
       "attribute": [
         "name"
       ]
     },
     {
-      "resource": "module.eks.module.kms.aws_kms_key.this[0]",
+      "resource": "module.eks.module.kms.aws_kms_replica_external_key.this[0]",
       "attribute": [
         "key_id"
       ]
     },
     {
-      "resource": "module.eks.data.aws_partition.current[0]",
+      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
       "attribute": [
-        "partition"
+        "latest_version"
       ]
     },
     {
-      "resource": "module.eks.data.tls_certificate.this[0]",
+      "resource": "module.eks.module.kms.aws_kms_alias.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
       "attribute": [
-        "certificates",
+        "vpc_config",
         0,
-        "sha1_fingerprint"
+        "cluster_security_group_id"
       ]
     },
     {
       "resource": "module.eks.aws_eks_cluster.this[0]",
       "attribute": [
-        "platform_version"
+        "certificate_authority",
+        0,
+        "data"
+      ]
+    },
+    {
+      "resource": "module.eks.time_sleep.this[0]",
+      "attribute": [
+        "triggers",
+        "cluster_certificate_authority_data"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_external_key.this[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_iam_role.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_iam_role.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "kubernetes_network_config",
+        0,
+        "ip_family"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
+      "attribute": [
+        "pod_execution_role_arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "health_check_type"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "id"
       ]
     },
     {
@@ -15759,9 +15862,123 @@
       ]
     },
     {
-      "resource": "module.eks.module.eks_managed_node_group.aws_iam_role.this[0]",
+      "resource": "module.eks.module.kms.aws_kms_replica_key.this[0]",
+      "attribute": [
+        "key_id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
+      "attribute": [
+        "resources"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_security_group.cluster[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_iam_role.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_iam_instance_profile.this[0]",
       "attribute": [
         "unique_id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].module.user_data.data.cloudinit_config.linux_eks_managed_node_group[0]",
+      "attribute": [
+        "rendered"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "platform_version"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_security_group.cluster[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].data.aws_ssm_parameter.ami[0]",
+      "attribute": [
+        "value"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_iam_role.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
+      "attribute": [
+        "taint"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_key.this[0]",
+      "attribute": [
+        "key_id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
+      "attribute": [
+        "resources"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_replica_external_key.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "image_id"
       ]
     },
     {
@@ -15775,64 +15992,63 @@
       ]
     },
     {
+      "resource": "module.eks.aws_iam_role.eks_auto[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_access_policy_association.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "kubernetes_network_config",
+        0,
+        "service_ipv6_cidr"
+      ]
+    },
+    {
       "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
       "attribute": [
         "id"
       ]
     },
     {
-      "resource": "module.eks.aws_iam_role.this[0]",
+      "resource": "module.eks.data.aws_partition.current[0]",
       "attribute": [
-        "arn"
+        "partition"
       ]
     },
     {
-      "resource": "module.eks.module.kms.aws_kms_external_key.this[0]",
-      "attribute": [
-        "policy"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_security_group.cluster[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_placement_group.this[0]",
       "attribute": [
         "name"
       ]
     },
     {
-      "resource": "module.eks.module.self_managed_node_group.aws_iam_instance_profile.this[0]",
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_iam_role.this[0]",
       "attribute": [
-        "unique_id"
+        "name"
       ]
     },
     {
-      "resource": "module.eks.module.kms.aws_kms_replica_external_key.this[0]",
+      "resource": "module.eks.aws_eks_cluster.this[0]",
       "attribute": [
-        "policy"
+        "endpoint"
       ]
     },
     {
-      "resource": "module.eks.time_sleep.this[0]",
+      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
       "attribute": [
-        "triggers",
-        "cluster_version"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.data.aws_subnets.placement_group[0]",
-      "attribute": [
-        "ids"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_replica_key.this[0]",
-      "attribute": [
-        "policy"
+        "taint"
       ]
     },
     {
@@ -15846,88 +16062,6 @@
       ]
     },
     {
-      "resource": "module.eks.module.fargate_profile.aws_iam_role.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_replica_key.this[0]",
-      "attribute": [
-        "key_id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
-      "attribute": [
-        "resources"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_iam_instance_profile.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.module.user_data.data.cloudinit_config.linux_eks_managed_node_group[0]",
-      "attribute": [
-        "rendered"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_iam_role.this[0]",
-      "attribute": [
-        "unique_id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.data.aws_iam_policy_document.this[0]",
-      "attribute": [
-        "json"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_autoscaling_schedule.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.data.aws_ssm_parameter.ami[0]",
-      "attribute": [
-        "value"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
-      "attribute": [
-        "resources"
-      ]
-    },
-    {
-      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
-      "attribute": [
-        "pod_execution_role_arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].data.aws_ec2_instance_type.this[0]",
-      "attribute": [
-        "maximum_network_cards"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "min_size"
-      ]
-    },
-    {
       "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
       "attribute": [
         "resources",
@@ -15938,9 +16072,49 @@
       ]
     },
     {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_key.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_key.this[0]",
+      "attribute": [
+        "policy"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.data.aws_ssm_parameter.ami[0]",
+      "attribute": [
+        "value"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_schedule.this",
+      "attribute": []
+    },
+    {
       "resource": "module.eks.module.eks_managed_node_group.aws_iam_role.this[0]",
       "attribute": [
         "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].module.user_data.data.cloudinit_config.al2023_eks_managed_node_group[0]",
+      "attribute": [
+        "rendered"
       ]
     },
     {
@@ -15948,10 +16122,87 @@
       "attribute": []
     },
     {
-      "resource": "module.eks.time_sleep.this[0]",
+      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
       "attribute": [
-        "triggers",
-        "cluster_certificate_authority_data"
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_iam_role.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].data.aws_ec2_instance_type.this[0]",
+      "attribute": [
+        "maximum_network_cards"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "default_version"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_iam_role.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
+      "attribute": [
+        "default_version"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_iam_role.this[0]",
+      "attribute": [
+        "unique_id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_replica_external_key.this[0]",
+      "attribute": [
+        "policy"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
+      "attribute": [
+        "latest_version"
+      ]
+    },
+    {
+      "resource": "module.eks.module.kms.aws_kms_external_key.this[0]",
+      "attribute": [
+        "policy"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "vpc_zone_identifier"
       ]
     },
     {
@@ -15962,259 +16213,15 @@
       ]
     },
     {
-      "resource": "module.eks.aws_security_group.node[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_schedule.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "health_check_type"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
-      "attribute": [
-        "default_version"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
-      "attribute": [
-        "taint"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_iam_role.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_cloudwatch_log_group.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_cloudwatch_log_group.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "vpc_config",
-        0,
-        "cluster_security_group_id"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_access_entry.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
-      "attribute": [
-        "default_version"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.module.user_data.data.cloudinit_config.al2023_eks_managed_node_group[0]",
-      "attribute": [
-        "rendered"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_iam_role.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.fargate_profile.aws_iam_role.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "default_cooldown"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_replica_key.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
-      "attribute": [
-        "labels"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_access_policy_association.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "kubernetes_network_config",
-        0,
-        "ip_family"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].data.aws_subnets.placement_group[0]",
-      "attribute": [
-        "ids"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "endpoint"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.data.aws_iam_session_context.current[0]",
-      "attribute": [
-        "issuer_arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_grant.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_iam_role.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "version"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_placement_group.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
-      "attribute": [
-        "latest_version"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_replica_external_key.this[0]",
-      "attribute": [
-        "key_id"
-      ]
-    },
-    {
       "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
       "attribute": [
         "availability_zones"
       ]
     },
     {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].module.user_data.data.cloudinit_config.linux_eks_managed_node_group[0]",
+      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
       "attribute": [
-        "rendered"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_iam_role.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.data.aws_ssm_parameter.ami[0]",
-      "attribute": [
-        "value"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "health_check_grace_period"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_iam_role.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "certificate_authority",
-        0,
-        "data"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_security_group.node[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_launch_template.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
-      "attribute": [
-        "id"
+        "status"
       ]
     },
     {
@@ -16225,183 +16232,9 @@
       ]
     },
     {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
-      "attribute": [
-        "resources",
-        0,
-        "autoscaling_groups",
-        0,
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_key.this[0]",
-      "attribute": [
-        "policy"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_security_group.cluster[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_iam_instance_profile.this[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_external_key.this[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
-      "attribute": [
-        "latest_version"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_identity_provider_config.this",
-      "attribute": []
-    },
-    {
       "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
       "attribute": [
-        "desired_capacity"
-      ]
-    },
-    {
-      "resource": "module.eks.time_sleep.this[0]",
-      "attribute": [
-        "triggers",
-        "cluster_service_cidr"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
-      "attribute": [
-        "vpc_zone_identifier"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].data.aws_ssm_parameter.ami[0]",
-      "attribute": [
-        "value"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_launch_template.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
-      "attribute": [
-        "status"
-      ]
-    },
-    {
-      "resource": "module.eks.time_sleep.this[0]",
-      "attribute": [
-        "triggers",
-        "cluster_name"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
-      "attribute": [
-        "status"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_addon.before_compute",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
-      "attribute": [
-        "status"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_iam_role.this[0]",
-      "attribute": [
-        "unique_id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_alias.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "kubernetes_network_config",
-        0,
-        "service_ipv6_cidr"
-      ]
-    },
-    {
-      "resource": "module.eks.module.fargate_profile.aws_iam_role.this[0]",
-      "attribute": [
-        "unique_id"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
-      "attribute": [
-        "taint"
-      ]
-    },
-    {
-      "resource": "module.eks.module.self_managed_node_group.aws_eks_access_entry.this[0]",
-      "attribute": [
-        "access_entry_arn"
-      ]
-    },
-    {
-      "resource": "module.eks.data.aws_eks_addon_version.this",
-      "attribute": []
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_iam_role.eks_auto[0]",
-      "attribute": [
-        "arn"
+        "health_check_grace_period"
       ]
     },
     {
@@ -16411,7 +16244,77 @@
       ]
     },
     {
-      "resource": "module.eks.module.kms.aws_kms_external_key.this[0]",
+      "resource": "module.eks.aws_eks_addon.before_compute",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "status"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "desired_capacity"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "version"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_iam_role.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "default_cooldown"
+      ]
+    },
+    {
+      "resource": "module.eks.data.aws_iam_session_context.current[0]",
+      "attribute": [
+        "issuer_arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_security_group.node[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
+      "attribute": [
+        "status"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_iam_instance_profile.this[0]",
       "attribute": [
         "arn"
       ]
@@ -16423,35 +16326,137 @@
       ]
     },
     {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "kubernetes_network_config",
-        0,
-        "service_ipv4_cidr"
-      ]
-    },
-    {
-      "resource": "module.eks.aws_eks_cluster.this[0]",
-      "attribute": [
-        "status"
-      ]
-    },
-    {
-      "resource": "module.eks.module.kms.aws_kms_replica_external_key.this[0]",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "resource": "module.eks.module.self_managed_node_group.aws_iam_instance_profile.this[0]",
       "attribute": [
         "id"
       ]
     },
     {
-      "resource": "module.eks.module.kms.aws_kms_key.this[0]",
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].aws_eks_node_group.this[0]",
+      "attribute": [
+        "resources",
+        0,
+        "autoscaling_groups",
+        0,
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.module.user_data.data.cloudinit_config.linux_eks_managed_node_group[0]",
+      "attribute": [
+        "rendered"
+      ]
+    },
+    {
+      "resource": "module.eks.data.tls_certificate.this[0]",
+      "attribute": [
+        "certificates",
+        0,
+        "sha1_fingerprint"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_cloudwatch_log_group.this[0]",
       "attribute": [
         "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_cluster.this[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_security_group.node[0]",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_autoscaling_schedule.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "max_size"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_iam_role.this[0]",
+      "attribute": [
+        "unique_id"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_iam_openid_connect_provider.oidc_provider[0]",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_eks_node_group.this[0]",
+      "attribute": [
+        "labels"
+      ]
+    },
+    {
+      "resource": "module.eks.data.aws_eks_addon_version.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group[\"example\"].data.aws_subnets.placement_group[0]",
+      "attribute": [
+        "ids"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.module.user_data.data.cloudinit_config.al2023_eks_managed_node_group[0]",
+      "attribute": [
+        "rendered"
+      ]
+    },
+    {
+      "resource": "module.eks.time_sleep.this[0]",
+      "attribute": [
+        "triggers",
+        "cluster_name"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_autoscaling_group.this[0]",
+      "attribute": [
+        "min_size"
+      ]
+    },
+    {
+      "resource": "module.eks.module.self_managed_node_group.aws_eks_access_entry.this[0]",
+      "attribute": [
+        "access_entry_arn"
+      ]
+    },
+    {
+      "resource": "module.eks.aws_eks_identity_provider_config.this",
+      "attribute": []
+    },
+    {
+      "resource": "module.eks.module.eks_managed_node_group.aws_launch_template.this[0]",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.eks.time_sleep.this[0]",
+      "attribute": [
+        "triggers",
+        "cluster_version"
+      ]
+    },
+    {
+      "resource": "module.eks.module.fargate_profile.aws_eks_fargate_profile.this[0]",
+      "attribute": [
+        "status"
       ]
     }
   ],
@@ -16497,7 +16502,7 @@
       "status": "pass"
     }
   ],
-  "timestamp": "2025-04-25T13:22:08Z",
+  "timestamp": "2025-04-25T13:57:29Z",
   "applyable": true,
   "complete": true,
   "errored": false
