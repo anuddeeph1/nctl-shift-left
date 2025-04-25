@@ -5,9 +5,9 @@ set -e
 install_terraform() {
     echo "Installing Terraform..."
     # Download Terraform binary
-    wget https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_linux_amd64.zip
+    wget https://releases.hashicorp.com/terraform/1.7.0/terraform_1.7.0_linux_amd64.zip
     # Unzip the downloaded file
-    unzip terraform_1.5.0_linux_amd64.zip
+    unzip terraform_1.7.0_linux_amd64.zip
     # Move Terraform binary to /usr/local/bin
     sudo mv terraform /usr/local/bin/
     echo "Terraform installed successfully."
@@ -18,15 +18,12 @@ run_terraform_commands() {
     cd config-files/terraform/eks
     echo "Running Terraform commands..."
     
-    # Initialize Terraform with experimental features enabled
+    # Initialize Terraform
     terraform init -upgrade || {
         echo "Terraform init failed";
         terraform version;
         exit 1;
     }
-    
-    # Enable experimental features
-    export TF_CLI_ARGS="-plugin-dir=.terraform/plugins -experiment=module_variable_optional_attrs"
     
     # Plan the changes Terraform will make - with no state refresh (scan only mode)
     terraform plan -refresh=false -out tfplan.binary || {

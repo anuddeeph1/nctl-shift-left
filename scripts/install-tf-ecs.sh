@@ -5,9 +5,9 @@ set -e
 install_terraform() {
     echo "Installing Terraform..."
     # Download Terraform binary
-    wget https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_linux_amd64.zip
+    wget https://releases.hashicorp.com/terraform/1.7.0/terraform_1.7.0_linux_amd64.zip
     # Unzip the downloaded file
-    unzip terraform_1.5.0_linux_amd64.zip
+    unzip terraform_1.7.0_linux_amd64.zip
     # Move Terraform binary to /usr/local/bin
     sudo mv terraform /usr/local/bin/
     echo "Terraform installed successfully."
