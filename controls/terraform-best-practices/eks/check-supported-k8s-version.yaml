@@ -1,0 +1,22 @@
+apiVersion: json.kyverno.io/v1alpha1
+kind: ValidatingPolicy
+metadata:
+  name: check-supported-k8s-version
+  annotations:
+    policies.kyverno.io/title: Check Supported K8s Version
+    policies.kyverno.io/category: EKS Best Practices
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/description: >-
+      This policy checks that EKS clusters are on a supported Kubernetes version
+spec:
+  rules:
+    - name: check-supported-k8s-version
+      match:
+        any:
+        - (planned_values.root_module.child_modules | length(@) > `0`): true
+      assert:
+        all:
+        - message: "EKS cluster must use a supported Kubernetes version (1.28-1.32)"
+          check:
+            (planned_values.root_module.child_modules[0].resources[?type=='aws_eks_cluster'].values.version | [0]):
+              (@ == '1.28' || @ == '1.29' || @ == '1.30' || @ == '1.31' || @ == '1.32'): true 

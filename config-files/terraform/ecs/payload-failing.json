@@ -1,0 +1,32 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.5.7",
+  "variables": {},
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_ecs_task_definition.ecs_task_definition",
+          "mode": "managed",
+          "type": "aws_ecs_task_definition",
+          "name": "ecs_task_definition",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 1,
+          "values": {
+            "container_definitions": "[{\"cpu\":256,\"essential\":true,\"image\":\"public.ecr.aws/f9n5f1l7/dgs:latest\",\"memory\":512,\"name\":\"dockergs\",\"portMappings\":[{\"containerPort\":80,\"hostPort\":80,\"protocol\":\"tcp\"}]}]",
+            "cpu": "256",
+            "family": "my-ecs-task",
+            "network_mode": "bridge",
+            "memory": "512",
+            "runtime_platform": [
+              {
+                "cpu_architecture": "X86_64",
+                "operating_system_family": "LINUX"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+} 

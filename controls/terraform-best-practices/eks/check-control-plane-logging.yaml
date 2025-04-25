@@ -14,9 +14,15 @@ spec:
     - name: check-control-plane-logging
       match:
         any:
-        - true: true
+        - (planned_values.root_module.child_modules[*].resources[?type=='aws_eks_cluster'] | length(@) > `0`): true
       assert:
         all:
         - message: EKS control plane logging must be enabled for all log types
           check:
-            (false): false 
+            ~.(planned_values.root_module.child_modules[*].resources[?type=='aws_eks_cluster'].values):
+                (enabled_cluster_log_types || `[]`):
+                  (contains(@, 'api')): true
+                  (contains(@, 'audit')): true
+                  (contains(@, 'authenticator')): true
+                  (contains(@, 'controllerManager')): true
+                  (contains(@, 'scheduler')): true 
