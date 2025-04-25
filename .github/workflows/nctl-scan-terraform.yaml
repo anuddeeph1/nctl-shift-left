@@ -38,6 +38,6 @@ jobs:
          # ./scripts/install-tf.sh
          # nctl scan terraform --policies controls/terraform-best-practices --resources config-files/terraform/ecs/payload.json
         run: |
-          nctl scan terraform --policies controls/terraform-best-practices/config/ --resources config-files/terraform/eks/payload.json
+          nctl scan terraform --policies controls/terraform-best-practices/eks/ --resources config-files/terraform/eks/payload.json
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
