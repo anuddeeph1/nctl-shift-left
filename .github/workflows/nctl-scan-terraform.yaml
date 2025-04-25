@@ -35,9 +35,8 @@ jobs:
         # terraform plan -out tfplan.binary
         # terraform show -json tfplan.binary | jq > payload.json
         run: |
-          ./scripts/install-tf.sh
-          nctl scan terraform --policies controls/terraform-best-practices --resources config-files/terraform/ecs/payload.json
-          nctl scan terraform --policies controls/terraform-best-practices/eks/ --resources config-files/terraform/eks/payload.json
+          ./scripts/install-tf-ecs.sh
+          nctl scan terraform --policies controls/terraform-best-practices/ecs/ --resources config-files/terraform/ecs/payload.json
 
       - name: NCTL Scan - Terraform EKS
         #cd config-files/terraform/eks
@@ -45,7 +44,7 @@ jobs:
         # terraform plan -out tfplan.binary
         # terraform show -json tfplan.binary | jq > payload.json
         run: |
-          ./scripts/install-tf.sh
+          ./scripts/install-tf-eks.sh
           nctl scan terraform --policies controls/terraform-best-practices/eks/ --resources config-files/terraform/eks/payload.json
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
