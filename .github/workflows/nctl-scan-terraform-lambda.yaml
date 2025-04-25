@@ -1,0 +1,37 @@
+name: NCTL Scan Terraform Demo Lambda
+run-name: ${{ github.actor }} has triggered Scan Action 🚀
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "meetup"
+env:
+  AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+  AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+  AWS_SESSION_TOKEN: ${{secrets.AWS_SESSION_TOKEN}}
+
+jobs:
+  NCTL-Scan-Terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: nctl-scan-installer
+        uses: nirmata/action-install-nctl-scan@v0.0.4
+
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+
+      - name: Check nctl version.
+        run: nctl version
+
+      - name: NCTL Scan - Terraform Lambda
+        run: |
+          nctl scan terraform --policies controls/terraform-best-practices/lambda/ --resources config-files/terraform/lambda/passing-payload.json
+          nctl scan terraform --policies controls/terraform-best-practices/lambda/ --resources config-files/terraform/lambda/failinging-payload.json
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."

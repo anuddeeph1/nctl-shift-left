@@ -1,0 +1,53 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.11.4",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "type": "aws_lambda_function",
+          "name": "example",
+          "values": {
+            "filename": "./lambda_function.zip",
+            "function_name": "example-lambda-function",
+            "handler": "index.handler",
+            "runtime": "nodejs18.x",
+            "environment": [
+              {
+                "variables": {
+                  "ENVIRONMENT": "dev",
+                  "SECRET_KEY": "sensitive-value"
+                }
+              }
+            ],
+            "vpc_config": [
+              {
+                "subnet_ids": ["subnet-12345678", "subnet-87654321"],
+                "security_group_ids": ["sg-12345678"]
+              }
+            ],
+            "kms_key_arn": "arn:aws:kms:us-west-2:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+          }
+        },
+        {
+          "type": "aws_lambda_function_url",
+          "name": "example",
+          "values": {
+            "authorization_type": "AWS_IAM",
+            "function_name": "example-lambda-function"
+          }
+        },
+        {
+          "type": "aws_lambda_permission",
+          "name": "example",
+          "values": {
+            "action": "lambda:InvokeFunctionUrl",
+            "function_name": "example-lambda-function",
+            "principal": "arn:aws:iam::123456789012:role/example-role",
+            "statement_id": "AllowIAMAccess"
+          }
+        }
+      ]
+    }
+  }
+} 

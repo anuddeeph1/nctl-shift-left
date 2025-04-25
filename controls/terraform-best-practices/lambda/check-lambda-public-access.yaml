@@ -1,0 +1,25 @@
+apiVersion: json.kyverno.io/v1alpha1
+kind: ValidatingPolicy
+metadata:
+  name: check-lambda-public-access
+  annotations:
+    policies.kyverno.io/title: Check Lambda Public Access
+    policies.kyverno.io/category: AWS Lambda Best Practices
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/description: >-
+      This policy ensures that AWS Lambda function is not publicly accessible through function URLs or resource-based policies
+spec:
+  rules:
+    - name: check-lambda-public-access
+      match:
+        any:
+        - (planned_values.root_module.resources[?type=='aws_lambda_function'] | length(@) > `0`): true
+      assert:
+        all:
+        - message: Lambda function must not have public function URL enabled
+          check:
+            (planned_values.root_module.resources[?type=='aws_lambda_function_url' && values.authorization_type=='NONE'] | length(@) > `0`): false
+        - message: Lambda function permissions must not allow public access
+          check:
+            (planned_values.root_module.resources[?type=='aws_lambda_permission' && values.principal=='*'] | length(@) > `0`): false
+

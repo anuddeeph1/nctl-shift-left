@@ -1,0 +1,48 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.11.4",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "type": "aws_lambda_function",
+          "name": "example",
+          "values": {
+            "filename": "./lambda_function.zip",
+            "function_name": "example-lambda-function",
+            "handler": "index.handler",
+            "runtime": "nodejs18.x",
+            "environment": [
+              {
+                "variables": {
+                  "ENVIRONMENT": "dev",
+                  "SECRET_KEY": "sensitive-value"
+                }
+              }
+            ],
+            "vpc_config": [],
+            "kms_key_arn": ""
+          }
+        },
+        {
+          "type": "aws_lambda_function_url",
+          "name": "example",
+          "values": {
+            "authorization_type": "NONE",
+            "function_name": "example-lambda-function"
+          }
+        },
+        {
+          "type": "aws_lambda_permission",
+          "name": "example",
+          "values": {
+            "action": "lambda:InvokeFunctionUrl",
+            "function_name": "example-lambda-function",
+            "principal": "*",
+            "statement_id": "AllowPublicAccess"
+          }
+        }
+      ]
+    }
+  }
+} 
