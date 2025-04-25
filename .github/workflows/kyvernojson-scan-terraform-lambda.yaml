@@ -1,4 +1,4 @@
-name: NCTL Scan Terraform Demo Lambda
+name: KyvernoJSON Scan Terraform Demo Lambda
 run-name: ${{ github.actor }} has triggered Scan Action 🚀
 on:
   pull_request:
@@ -31,7 +31,7 @@ jobs:
 
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
 
-      - name: Kyverno Json Scan - Terraform
+      - name: KyvernoJSON Scan - Terraform
         run: |
           kyverno-json scan --policy controls/terraform-best-practices/lambda/ --payload config-files/terraform/lambda/passing-payload.json
           kyverno-json scan --policy controls/terraform-best-practices/lambda/ --payload config-files/terraform/lambda/failing-payload.json
