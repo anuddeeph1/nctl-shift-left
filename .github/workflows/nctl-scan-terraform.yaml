@@ -29,15 +29,23 @@ jobs:
       - name: Check nctl version.
         run: nctl version
 
-      - name: NCTL Scan - Terraform
+      - name: NCTL Scan - Terraform ECS
         # cd config-files/terraform/ecs
         # terraform init
         # terraform plan -out tfplan.binary
         # terraform show -json tfplan.binary | jq > payload.json
-
-         # ./scripts/install-tf.sh
-         # nctl scan terraform --policies controls/terraform-best-practices --resources config-files/terraform/ecs/payload.json
         run: |
+          ./scripts/install-tf.sh
+          nctl scan terraform --policies controls/terraform-best-practices --resources config-files/terraform/ecs/payload.json
+          nctl scan terraform --policies controls/terraform-best-practices/eks/ --resources config-files/terraform/eks/payload.json
+
+      - name: NCTL Scan - Terraform EKS
+        #cd config-files/terraform/eks
+        # terraform init
+        # terraform plan -out tfplan.binary
+        # terraform show -json tfplan.binary | jq > payload.json
+        run: |
+          ./scripts/install-tf.sh
           nctl scan terraform --policies controls/terraform-best-practices/eks/ --resources config-files/terraform/eks/payload.json
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
