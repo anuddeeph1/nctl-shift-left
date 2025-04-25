@@ -34,6 +34,9 @@ jobs:
       - name: KyvernoJSON Scan - Terraform
         run: |
           kyverno-json scan --policy controls/terraform-best-practices/lambda/ --payload config-files/terraform/lambda/passing-payload.json
+
+      - name: KyvernoJSON Scan - Terraform
+        run: |
           kyverno-json scan --policy controls/terraform-best-practices/lambda/ --payload config-files/terraform/lambda/failing-payload.json
           
         #nctl scan terraform --policies controls/terraform-best-practices/lambda/ --resources config-files/terraform/lambda/passing-payload.json
