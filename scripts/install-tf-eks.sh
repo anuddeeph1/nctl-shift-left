@@ -18,7 +18,7 @@ run_terraform_commands() {
     cd config-files/terraform/eks
     echo "Running Terraform commands..."
     # Initialize Terraform in the directory where your configuration files are located
-    terraform init
+    terraform init -reconfigure
     # Plan the changes Terraform will make
     terraform plan -out tfplan.binary
     # Store in JSON
