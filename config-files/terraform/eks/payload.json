@@ -352,7 +352,7 @@
                   "delete": null,
                   "update": null
                 },
-                "version": "1.31",
+                "version": "1.33",
                 "vpc_config": [
                   {
                     "endpoint_private_access": true,
