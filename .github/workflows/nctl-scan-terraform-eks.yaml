@@ -1,4 +1,4 @@
-name: NCTL Scan Terraform Demo
+name: NCTL Scan Terraform Demo EKS
 run-name: ${{ github.actor }} has triggered Scan Action 🚀
 on:
   pull_request:
