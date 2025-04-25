@@ -29,9 +29,13 @@ jobs:
       - name: Check nctl version.
         run: nctl version
 
-      - name: NCTL Scan - Terraform Lambda
+      - name: NCTL Scan - Terraform Lambda Good payload
         run: |
           nctl scan terraform --policies controls/terraform-best-practices/lambda/ --resources config-files/terraform/lambda/passing-payload.json
+          nctl scan terraform --policies controls/terraform-best-practices/lambda/ --resources config-files/terraform/lambda/failinging-payload.json
+
+      - name: NCTL Scan - Terraform Lambda Bad payload
+        run: |
           nctl scan terraform --policies controls/terraform-best-practices/lambda/ --resources config-files/terraform/lambda/failinging-payload.json
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
