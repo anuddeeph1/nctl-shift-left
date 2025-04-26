@@ -38,4 +38,4 @@ jobs:
           ./scripts/install-tf-ecs.sh
           nctl scan terraform --policies controls/terraform-best-practices/ecs/ --resources config-files/terraform/ecs/payload.json
 
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}.."
